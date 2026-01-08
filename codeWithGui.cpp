@@ -47,9 +47,9 @@ void drawGrid(Mat& img) {
 }
 
 int main() {
-    VideoCapture cap(1); // جرب 0 لو 1 مشتغلتش
-    if (!cap.isOpened()) cap.open(0);
-    cap.set(CAP_PROP_EXPOSURE, -6);
+    VideoCapture cam(1); // جرب 0 لو 1 مشتغلتش
+    if (!cam.isOpened()) cam.open(0);
+    cam.set(CAP_PROP_EXPOSURE, -6);
 
     Mat frame, gray, thresh;
     Mat canvas(H, W, CV_8UC3, COL_BG);
@@ -72,7 +72,7 @@ int main() {
     deque<int> signalHistory(300, 0); // لتخزين آخر 300 قراءة للرسم البياني
 
     while (true) {
-        cap >> frame;
+        cam >> frame;
         if (frame.empty()) break;
         flip(frame, frame, 1);
 
@@ -179,4 +179,5 @@ int main() {
         if (key == 'c') { decodedMessage = ""; currentSymbol = ""; }
     }
     return 0;
+
 }
