@@ -22,11 +22,11 @@ map<string, char> morseMap = {
 };
 
 int main() {
-    VideoCapture cap(1);
-    if (!cap.isOpened()) return -1;
+    VideoCapture cam(1);
+    if (!cam.isOpened()) return -1;
 
     // حاول تقلل الإضاءة قدر الإمكان (لو مش شغال، استخدم السلايدر تحت)
-    cap.set(CAP_PROP_EXPOSURE, -6);
+    cam.set(CAP_PROP_EXPOSURE, -6);
 
     Mat frame, gray, thresh;
 
@@ -41,7 +41,7 @@ string decodedMessage = "";
 auto lastSymbolTime = high_resolution_clock::now();
 
     while (true) {
-        cap >> frame;
+        cam >> frame;
         if (frame.empty()) break;
         flip(frame, frame, 1);
 
@@ -134,5 +134,6 @@ auto lastSymbolTime = high_resolution_clock::now();
     }
     return 0;
 }
+
 
 
